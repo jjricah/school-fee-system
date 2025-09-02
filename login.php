@@ -53,7 +53,7 @@ if (isset($_POST['login'])) {
 <body>
     <div class="login-container">
         <div class="login-panel">
-            <!-- School Logo (you'll need to add your actual logo image) -->
+            
             <img src="css/images/school-logo.png" alt="School Logo" class="school-logo" />
 
             <h3 class="school-title">Movers Institute of Technology and Education</h3>

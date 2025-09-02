@@ -24,18 +24,18 @@ body {
 }
 
 .login-panel {
-  background-color: #f4d03f;
+  background-color: rgba(255, 195, 11, 0.8);
   border-radius: 15px;
-  padding: 50px; 
-  width: 600px; 
+  padding: 30px; 
+  width: 500px; 
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .school-logo {
   display: block;
   margin: 0 auto 25px auto;
-  width: 100px; 
-  height: 100px; 
+  width: 130px; 
+  height: 130px; 
   border-radius: 50%;
   background-color: white;
 }
@@ -51,7 +51,7 @@ body {
 
 .school-subtitle {
   text-align: center;
-  font-size: 14px;
+  font-size: 16px;
   color: #34495e;
   margin-bottom: 30px;
 }

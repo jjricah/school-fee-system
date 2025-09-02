@@ -18,11 +18,12 @@ $grade='';
 
 
 
+
 if(isset($_GET['action']) && $_GET['action']=="delete"){
-
-$conn->query("DELETE FROM student WHERE id='".$_GET['id']."'");	
-header("location: student.php?act=3");
-
+    $stmt = $conn->prepare("DELETE FROM student WHERE id=?");
+    $stmt->bind_param("i", $_GET['id']);
+    $stmt->execute();
+    header("location: inactivestd.php?act=3");
 }
 
 if(isset($_GET['action']) && $_GET['action']=="approve"){

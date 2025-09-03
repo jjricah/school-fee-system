@@ -85,7 +85,15 @@ include("php/header.php");
 									?>
 	</select>
   </div>
-  
+  <div class="form-group">
+    <label for="email"> Semester </label>
+    <select class="form-control" id="semester" name="semester">
+      <option value="">Select Semester</option>
+      <option value="1">First Semester</option>
+      <option value="2">Second Semester</option>
+    </select>
+  </div>
+
    <button type="button" class="btn btn-success btn-sm" style="border-radius:0%" id="find" > Filter </button>
   <button type="reset" class="btn btn-danger btn-sm" style="border-radius:0%" id="clear" > Reset </button>
 </form>
@@ -190,7 +198,7 @@ mydatatable();
 function mydatatable()
 {
         
-              $("#subjectresult").html('<table class="table table-striped table-bordered table-hover" id="tSortable22"><thead><tr><th>Name/Contact</th><th>Fees</th><th>Balance</th><th>Grade</th><th>DOJ</th><th>Action</th></tr></thead><tbody></tbody></table>');
+              $("#subjectresult").html('<table class="table table-striped table-bordered table-hover" id="tSortable22"><thead><tr><th>Name/Contact</th><th>Fees</th><th>Balance</th><th>Grade</th><th>Semester</th><th>DOJ</th><th>Action</th></tr></thead><tbody></tbody></table>');
 			  
 			    $("#tSortable22").dataTable({
 							      'sPaginationType' : 'full_numbers',
@@ -277,6 +285,7 @@ display:none;
                                             <th>Fees</th>
                                           <th>Balance</th>
                                           <th>Grade</th>
+                                          <th>Semester</th>
                                           <th>DOJ</th>
                                           <th>Action</th>
                                         </tr>

@@ -31,6 +31,7 @@ CREATE TABLE `fees_transaction` (
   `stdid` varchar(255) NOT NULL,
   `paid` int(255) NOT NULL,
   `submitdate` datetime NOT NULL,
+  `semester` varchar(50) NOT NULL,
   `transcation_remark` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -38,26 +39,26 @@ CREATE TABLE `fees_transaction` (
 -- Dumping data for table `fees_transaction`
 --
 
-INSERT INTO `fees_transaction` (`id`, `stdid`, `paid`, `submitdate`, `transcation_remark`) VALUES
-(6, '5', 1500, '2018-06-02 00:00:00', 'DEMO'),
-(11, '10', 2500, '2021-01-14 00:00:00', 'advance payment received'),
-(12, '11', 2100, '2021-03-26 00:00:00', 'Advance payment done!'),
-(13, '12', 3000, '2019-10-11 00:00:00', 'advance received'),
-(14, '13', 1000, '2021-04-01 00:00:00', 'advance received'),
-(15, '14', 2500, '2021-04-01 00:00:00', 'advance fee received first of month'),
-(16, '15', 2100, '2018-04-01 00:00:00', 'advance fee received march'),
-(17, '16', 2900, '2019-04-06 00:00:00', 'received during enrollment'),
-(18, '17', 3500, '2021-04-18 00:00:00', 'received on apr 18'),
-(19, '18', 500, '2021-01-03 00:00:00', 'none'),
-(20, '19', 4900, '2015-02-20 00:00:00', 'none'),
-(21, '20', 0, '2021-04-01 00:00:00', 'none'),
-(22, '21', 2000, '2021-04-04 00:00:00', 'none'),
-(23, '22', 0, '2021-02-21 00:00:00', 'none'),
-(24, '23', 5000, '2021-04-04 00:00:00', 'none'),
-(25, '24', 3900, '2021-03-29 00:00:00', 'advance payment received on march'),
-(26, '24', 3100, '2021-04-21 00:00:00', 'fees cleared up!'),
-(27, '22', 4900, '2021-04-23 00:00:00', 'all clear'),
-(28, '24', 900, '2021-04-23 00:00:00', 'cleared up remainings');
+INSERT INTO `fees_transaction` (`id`, `stdid`, `paid`, `submitdate`, `semester`, `transcation_remark`) VALUES
+(6, '5', 1500, '2018-06-02 00:00:00', '1', 'DEMO'),
+(11, '10', 2500, '2021-01-14 00:00:00', '1', 'advance payment received'),
+(12, '11', 2100, '2021-03-26 00:00:00', '1', 'Advance payment done!'),
+(13, '12', 3000, '2019-10-11 00:00:00', '1', 'advance received'),
+(14, '13', 1000, '2021-04-01 00:00:00', '1', 'advance received'),
+(15, '14', 2500, '2021-04-01 00:00:00', '1', 'advance fee received first of month'),
+(16, '15', 2100, '2018-04-01 00:00:00', '1', 'advance fee received march'),
+(17, '16', 2900, '2019-04-06 00:00:00', '1', 'received during enrollment'),
+(18, '17', 3500, '2021-04-18 00:00:00', '1', 'received on apr 18'),
+(19, '18', 500, '2021-01-03 00:00:00', '1', 'none'),
+(20, '19', 4900, '2015-02-20 00:00:00', '1', 'none'),
+(21, '20', 0, '2021-04-01 00:00:00', '1', 'none'),
+(22, '21', 2000, '2021-04-04 00:00:00', '1', 'none'),
+(23, '22', 0, '2021-02-21 00:00:00', '1', 'none'),
+(24, '23', 5000, '2021-04-04 00:00:00', '1', 'none'),
+(25, '24', 3900, '2021-03-29 00:00:00', '1', 'advance payment received on march'),
+(26, '24', 3100, '2021-04-21 00:00:00', '1', 'fees cleared up!'),
+(27, '22', 4900, '2021-04-23 00:00:00', '1', 'all clear'),
+(28, '24', 900, '2021-04-23 00:00:00', '1', 'cleared up remainings');
 
 -- --------------------------------------------------------
 
@@ -105,6 +106,7 @@ CREATE TABLE `student` (
   `contact` varchar(255) NOT NULL,
   `fees` int(255) NOT NULL,
   `grade` varchar(255) NOT NULL,
+  `semester` varchar(50) NOT NULL,
   `balance` int(255) NOT NULL,
   `delete_status` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -113,82 +115,70 @@ CREATE TABLE `student` (
 -- Dumping data for table `student`
 --
 
-INSERT INTO `student` (`id`, `emailid`, `sname`, `joindate`, `about`, `contact`, `fees`, `grade`, `balance`, `delete_status`) VALUES
-(5, 'christinemoore@gmail.com', 'Christine Moore', '2020-02-14 00:00:00', 'Demo About Text', '7566969650', 3660, '11', 2160, '0'),
-(10, 'leomaxwell@gmail.com', 'Leo Maxwell', '2021-01-14 00:00:00', 'new enrollment', '7563690002', 5120, '8', 2620, '0'),
-(11, 'arandrew@gmail.com', 'Andrew Arnette', '2021-03-26 00:00:00', 'new enrollment', '3520120006', 5200, '12', 3100, '0'),
-(12, 'jonathan@gmail.com', 'Jonathan Odell', '2019-10-11 00:00:00', 'old enrollment', '4230001205', 6900, '8', 3900, '0'),
-(13, 'benjamin@gmail.com', 'Benjamin L Russell', '2021-04-01 00:00:00', 'new enroll', '9012568500', 3600, '3', 2600, '0'),
-(14, 'kathrynmc@gmail.com', 'Kathryn McKeehan', '2021-04-01 00:00:00', 'new student from centrol branch', '9751250006', 5000, '10', 2500, '0'),
-(15, 'davidandersn@gmail.com', 'David Anderson', '2018-04-01 00:00:00', 'std from woodcreek branch', '7412036660', 7900, '7', 5800, '0'),
-(16, 'joannnt@gmail.com', 'Joann TSaylor', '2019-04-06 00:00:00', 'std from riverview branch', '9031480360', 6100, '12', 3200, '0'),
-(17, 'kevinrogers@gmail.com', 'Kevin Rogers', '2021-04-18 00:00:00', 'fresh enrollment', '9031476969', 5500, '11', 2000, '0'),
-(18, 'chavez.ly@gmail.com', 'Lyle Chavez', '2021-01-03 00:00:00', 'central student', '8520696976', 3600, '3', 3100, '0'),
-(20, 'none@dem.com', 'Demo', '2021-04-01 00:00:00', 'none', '785555555', 0, '1', 0, '1'),
-(21, 'marcellak@gmail.com', 'Marcella Keyes', '2021-04-04 00:00:00', 'fresh enrollment', '7456000020', 4900, '6', 2900, '0'),
-(22, 'george@gmail.com', 'George Russell', '2021-02-21 00:00:00', 'none', '2004568500', 4900, '5', 0, '0'),
-(23, 'willwilliams55@gmail.com', 'Will Williams', '2021-04-04 00:00:00', 'none', '8521245000', 12000, '11', 7000, '0'),
-(24, 'staceyellsw@gmail.com', 'Stacey Ellsworth', '2021-03-29 00:00:00', 'new enrollment', '6570002549', 7900, '10', 0, '0');
-
+INSERT INTO `student` (`id`, `emailid`, `sname`, `joindate`, `about`, `contact`, `fees`, `grade`, `semester`, `balance`, `delete_status`) VALUES
+(5, 'christinemoore@gmail.com', 'Christine Moore', '2020-02-14 00:00:00', 'Demo About Text', '7566969650', 3660, '11', '1', 2160, '0'),
+(10, 'leomaxwell@gmail.com', 'Leo Maxwell', '2021-01-14 00:00:00', 'new enrollment', '7563690002', 5120, '8', '1', 2620, '0'),
+(11, 'arandrew@gmail.com', 'Andrew Arnette', '2021-03-26 00:00:00', 'new enrollment', '3520120006', 5200, '12', '1', 3100, '0'),
+(12, 'jonathan@gmail.com', 'Jonathan Odell', '2019-10-11 00:00:00', 'old enrollment', '4230001205', 6900, '8', '1', 3900, '0'),
+(13, 'benjamin@gmail.com', 'Benjamin L Russell', '2021-04-01 00:00:00', 'new enroll', '9012568500', 3600, '3', '1', 2600, '0'),
+(14, 'kathrynmc@gmail.com', 'Kathryn McKeehan', '2021-04-01 00:00:00', 'new student from centrol branch', '9751250006', 5000, '10', '1', 2500, '0'),
+(15, 'davidandersn@gmail.com', 'David Anderson', '2018-04-01 00:00:00', 'std from woodcreek branch', '7412036660', 7900, '7', '1', 5800, '0'),
+(16, 'joannnt@gmail.com', 'Joann TSaylor', '2019-04-06 00:00:00', 'std from riverview branch', '9031480360', 6100, '12', '1', 3200, '0'),
+(17, 'kevinrogers@gmail.com', 'Kevin Rogers', '2021-04-18 00:00:00', 'fresh enrollment', '9031476969', 5500, '11', '1', 2000, '0'),
+(18, 'chavez.ly@gmail.com', 'Lyle Chavez', '2021-01-03 00:00:00', 'central student', '8520696976', 3600, '3', '1', 3100, '0'),
+(20, 'none@dem.com', 'Demo', '2021-04-01 00:00:00', 'none', '785555555', 0, '1', '1', 0, '1'),
+(21, 'marcellak@gmail.com', 'Marcella Keyes', '2021-04-04 00:00:00', 'fresh enrollment', '7456000020', 4900, '6', '1', 2900, '0'),
+(22, 'george@gmail.com', 'George Russell', '2021-02-21 00:00:00', 'none', '2004568500', 4900, '5', '1', 0, '0'),
+(23, 'willwilliams55@gmail.com', 'Will Williams', '2021-04-04 00:00:00', 'none', '8521245000', 12000, '11', '1', 7000, '0'),
+(24, 'staceyellsw@gmail.com', 'Stacey Ellsworth', '2021-03-29 00:00:00', 'new enrollment', '6570002549', 7900, '10', '1', 0, '0');
 -- --------------------------------------------------------
-
 --
 -- Table structure for table `user`
 --
-
 CREATE TABLE `user` (
-  `id` int(255) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `emailid` varchar(255) NOT NULL,
-  `lastlogin` datetime NOT NULL
+`id` int(255) NOT NULL,
+`username` varchar(255) NOT NULL,
+`password` varchar(255) NOT NULL,
+`name` varchar(255) NOT NULL,
+`emailid` varchar(255) NOT NULL,
+`lastlogin` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 --
 -- Dumping data for table `user`
 --
-
 INSERT INTO `user` (`id`, `username`, `password`, `name`, `emailid`, `lastlogin`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'admin@gmail.com', '0000-00-00 00:00:00');
-
 --
 -- Indexes for dumped tables
 --
-
 --
 -- Indexes for table `fees_transaction`
 --
 ALTER TABLE `fees_transaction`
-  ADD PRIMARY KEY (`id`);
-
+ADD PRIMARY KEY (`id`);
 --
 -- Indexes for table `grade`
 --
 ALTER TABLE `grade`
-  ADD PRIMARY KEY (`id`);
-
+ADD PRIMARY KEY (`id`);
 --
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`id`);
-
+ADD PRIMARY KEY (`id`);
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
-
+ADD PRIMARY KEY (`id`);
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
 --
 -- AUTO_INCREMENT for table `fees_transaction`
 --
 ALTER TABLE `fees_transaction`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT for table `grade`
 --

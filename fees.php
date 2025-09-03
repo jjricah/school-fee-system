@@ -6,7 +6,6 @@ if(isset($_POST['save']))
 {
 $paid = mysqli_real_escape_string($conn,$_POST['paid']);
 $submitdate = mysqli_real_escape_string($conn,$_POST['submitdate']);
-$semester = mysqli_real_escape_string($conn,$_POST['semester']);
 $transcation_remark = mysqli_real_escape_string($conn,$_POST['transcation_remark']);
 $sid = mysqli_real_escape_string($conn,$_POST['sid']);
 
@@ -16,9 +15,8 @@ $sr = $sq->fetch_assoc();
 $totalfee = $sr['fees'];
 if($sr['balance']>0)
 {
-$sql = "insert into fees_transaction(stdid,submitdate,semester,transcation_remark,paid) values('$sid','$submitdate','$semester','$transcation_remark','$paid') ";
+$sql = "insert into fees_transaction(stdid,submitdate,transcation_remark,paid) values('$sid','$submitdate','$transcation_remark','$paid') ";
 $conn->query($sql);
-$tid = $conn->insert_id;
 $sql = "SELECT sum(paid) as totalpaid FROM fees_transaction WHERE stdid = '$sid'";
 $tpq = $conn->query($sql);
 $tpr = $tpq->fetch_assoc();
@@ -28,7 +26,7 @@ $tbalance = $totalfee - $totalpaid;
 $sql = "update student set balance='$tbalance' where id = '$sid'";
 $conn->query($sql);
 
- echo '<script type="text/javascript">window.location="receipt.php?tid=' . $tid . '";</script>';
+ echo '<script type="text/javascript">window.location="fees.php?act=1";</script>';
 }
 }
 
@@ -123,15 +121,7 @@ include("php/header.php");
 									?>
 	</select>
   </div>
-  <div class="form-group">
-    <label for="email"> Semester </label>
-    <select class="form-control" id="semester" name="semester">
-      <option value="">Select Semester</option>
-      <option value="1">First Semester</option>
-      <option value="2">Second Semester</option>
-    </select>
-  </div>
-
+  
    <button type="button" class="btn btn-success btn-sm" style="border-radius:0%" id="find" > Filter </button>
   <button type="reset" class="btn btn-danger btn-sm" style="border-radius:0%" id="clear" > Reset </button>
 </form>
@@ -236,7 +226,7 @@ mydatatable();
 function mydatatable()
 {
         
-              $("#subjectresult").html('<table class="table table-striped table-bordered table-hover" id="tSortable22"><thead><tr><th>Name/Contact</th><th>Fees</th><th>Balance</th><th>Grade</th><th>Semester</th><th>DOJ</th><th>Action</th></tr></thead><tbody></tbody></table>');
+              $("#subjectresult").html('<table class="table table-striped table-bordered table-hover" id="tSortable22"><thead><tr><th>Name/Contact</th><th>Fees</th><th>Balance</th><th>Grade</th><th>DOJ</th><th>Action</th></tr></thead><tbody></tbody></table>');
 			  
 			    $("#tSortable22").dataTable({
 							      'sPaginationType' : 'full_numbers',
@@ -319,12 +309,11 @@ display:none;
                                     <thead>
                                         <tr>
                                           
-                                            <th>Name/Contact</th>
+                                            <th>Name/Contact</th>                                            
                                             <th>Fees</th>
-                                                                                        <th>Balance</th>
-                                                                                        <th>Grade</th>
-                                                                                        <th>Semester</th>
-                                                                                        <th>DOJ</th>
+											<th>Balance</th>
+											<th>Grade</th>
+											<th>DOJ</th>
 											<th>Action</th>
                                         </tr>
                                     </thead>

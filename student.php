@@ -14,7 +14,6 @@ $balance = 0;
 $fees='';
 $about = '';
 $grade='';
-$semester='';
 
 
 if(isset($_POST['save']))
@@ -27,7 +26,6 @@ $contact = mysqli_real_escape_string($conn,$_POST['contact']);
 $about = mysqli_real_escape_string($conn,$_POST['about']);
 $emailid = mysqli_real_escape_string($conn,$_POST['emailid']);
 $grade = mysqli_real_escape_string($conn,$_POST['grade']);
-$semester = mysqli_real_escape_string($conn,$_POST['semester']);
 
 
  if($_POST['action']=="add")
@@ -37,11 +35,11 @@ $semester = mysqli_real_escape_string($conn,$_POST['semester']);
  $advancefees = mysqli_real_escape_string($conn,$_POST['advancefees']);
  $balance = $fees-$advancefees;
  
-  $q1 = $conn->query("INSERT INTO student (sname,joindate,contact,about,emailid,grade,semester,balance,fees) VALUES ('$sname','$joindate','$contact','$about','$emailid','$grade','$semester','$balance','$fees')") ;
+  $q1 = $conn->query("INSERT INTO student (sname,joindate,contact,about,emailid,grade,balance,fees) VALUES ('$sname','$joindate','$contact','$about','$emailid','$grade','$balance','$fees')") ;
   
   $sid = $conn->insert_id;
   
- $conn->query("INSERT INTO  fees_transaction (stdid,paid,submitdate,semester,transcation_remark) VALUES ('$sid','$advancefees','$joindate','$semester','$remark')") ;
+ $conn->query("INSERT INTO  fees_transaction (stdid,paid,submitdate,transcation_remark) VALUES ('$sid','$advancefees','$joindate','$remark')") ;
     
    echo '<script type="text/javascript">window.location="student.php?act=1";</script>';
  
@@ -49,7 +47,7 @@ $semester = mysqli_real_escape_string($conn,$_POST['semester']);
   if($_POST['action']=="update")
  {
  $id = mysqli_real_escape_string($conn,$_POST['id']);	
-   $sql = $conn->query("UPDATE  student  SET  grade  = '$grade', semester = '$semester', sname = '$sname', contact = '$contact', about = '$about', emailid = '$emailid'  WHERE  id  = '$id'");
+   $sql = $conn->query("UPDATE  student  SET  grade  = '$grade', sname = '$sname', contact = '$contact', about = '$about', emailid = '$emailid'  WHERE  id  = '$id'");
    echo '<script type="text/javascript">window.location="student.php?act=2";</script>';
  }
 
@@ -198,16 +196,6 @@ echo $errormsg;
 									</select>
 								</div>
 						</div>
-                                                <div class="form-group">
-                                                                <label class="col-sm-2 control-label" for="Old">Semester* </label>
-                                                                <div class="col-sm-10">
-                                                                        <select class="form-control" id="semester" name="semester">
-                                                                                <option value="">Select Semester</option>
-                                                                                <option value="1" <?php echo ($semester=='1')?'selected="selected"':'';?>>First Semester</option>
-                                                                                <option value="2" <?php echo ($semester=='2')?'selected="selected"':'';?>>Second Semester</option>
-                                                                        </select>
-                                                                </div>
-                                                </div>
 						
 						
 						<div class="form-group">
@@ -341,7 +329,6 @@ yearRange: "1970:<?php echo date('Y');?>"
 					joindate: "required",
 					emailid: "email",
 					grade: "required",
-                                        semester: "required",
 					
 					
 					contact: {
@@ -373,7 +360,6 @@ yearRange: "1970:<?php echo date('Y');?>"
 					joindate: "required",
 					emailid: "email",
 					grade: "required",
-                                        semester: "required",
 					
 					
 					contact: {
@@ -495,7 +481,6 @@ yearRange: "1970:<?php echo date('Y');?>"
                                             <th>#</th>
                                             <th>Name | Contact</th>
 											<th>Grade</th>
-                                            <th>Semester</th>
                                             <th>Joined On</th>
                                             <th>Fees</th>
 											<th>Balance</th>
@@ -514,7 +499,6 @@ yearRange: "1970:<?php echo date('Y');?>"
                                             <td>'.$i.'</td>
 											<td>'.$r['sname'].'<br/>'.$r['contact'].'</td>
 											<td>'.$r['grade'].''.'</td>
-                                            <td>'.$r['semester'].'</td>
                                             <td>'.date("d M y", strtotime($r['joindate'])).'</td>
                                             <td>'.$r['fees'].'</td>
 											<td>'.$r['balance'].'</td>

@@ -121,7 +121,6 @@ include("php/header.php");
                                             <th>#</th>
                                             <th>Name | Contact</th>
                                             <th>Grade</th>
-                                            <th>Semester</th>
                                             <th>Joined On</th>
                                             <th>Fees</th>
 											<th>Balance</th>
@@ -140,7 +139,6 @@ include("php/header.php");
                                             <td>'.$i.'</td>
                                             <td>'.$r['sname'].'<br/>'.$r['contact'].'</td>
                                             <td>'.$r['grade'].'</td>
-                                            <td>'.$r['semester'].'</td>
                                             <td>'.date("d M y", strtotime($r['joindate'])).'</td>
                                             <td>'.$r['fees'].'</td>
 											<td>'.$r['balance'].'</td>

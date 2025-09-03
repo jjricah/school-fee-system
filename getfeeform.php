@@ -46,17 +46,6 @@ echo '  <form class="form-horizontal" id ="signupForm1" action="fees.php" method
   
   
   <div class="form-group">
-    <label class="control-label col-sm-2" for="email">Semester:</label>
-    <div class="col-sm-10">
-      <select class="form-control" name="semester" id="semester">
-        <option value="">Select Semester</option>
-        <option value="1">First Semester</option>
-        <option value="2">Second Semester</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="form-group">
     <label class="control-label col-sm-2" for="email">Paid:</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="paid"  id="paid"  />
@@ -105,8 +94,7 @@ $("#submitdate").datepicker( {
 
 $( "#signupForm1" ).validate( {
 				rules: {
-                                        submitdate: "required",
-                                        semester: "required",
+					submitdate: "required",
 					
 					paid: {
 						required: true,
